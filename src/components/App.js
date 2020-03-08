@@ -18,10 +18,11 @@ function App() {
 	const [query, setQuery] = React.useState(null)
 	const [page, setPage] = React.useState(0)
 	React.useEffect(() => {
-		setGifs(null)
-		query === null
-			? getTrendingGifs(page * 25).then(resp => setGifs(resp.data))
-			: search(query, page * 25).then(resp => setGifs(resp.data))
+		if (query === null) {
+			getTrendingGifs(page * 25).then(resp => setGifs(resp.data))
+		} else {
+			search(query, page * 25).then(resp => setGifs(resp.data))
+		}
 	}, [query, page])
 	return (
 		<ThemeProvider theme={createMuiTheme(theme)}>
@@ -35,14 +36,18 @@ function App() {
 				xs={12}
 				style={{ overflow_x: 'hidden' }}
 			>
-				<Search setQuery={setQuery} />
-				{query && gifs && (
+				<Search setPage={setPage} setQuery={setQuery} />
+				{gifs && gifs.pagination.total_count > 0 && (
 					<QueryView
-						query={query}
+						query={query ? query : 'Trending'}
 						total={gifs.pagination.total_count}
 					/>
 				)}
-				{gifs ? <GifView gifs={gifs.data} /> : <LinearProgress />}
+				{gifs ? (
+					<GifView page={page} setPage={setPage} gifs={gifs} />
+				) : (
+					<LinearProgress />
+				)}
 			</Grid>
 		</ThemeProvider>
 	)

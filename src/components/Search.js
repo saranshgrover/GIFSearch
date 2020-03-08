@@ -19,11 +19,12 @@ const useStyles = makeStyles(theme => ({
 	}
 }))
 
-export default function Search({ setQuery }) {
+export default function Search({ setPage, setQuery }) {
 	const classes = useStyles()
 	const [search, setSearch] = React.useState('')
 	const handleSubmit = e => {
 		e.preventDefault()
+		setPage(0)
 		search === '' ? setQuery(null) : setQuery(search)
 	}
 	return (

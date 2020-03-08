@@ -5,9 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-	paper: {
-		// 99 since padding takes 1vw
-		width: '90vw'
+	text: {
+		marginLeft: '1vw'
 	}
 }))
 
@@ -15,9 +14,15 @@ export default function QueryView({ query, total }) {
 	const classes = useStyles()
 	return (
 		<Grid item>
-			<Paper className={classes.paper} variant='outlined'>
-				<Typography variant='h4'>{`Found ${total} results for: ${query}`}</Typography>
-			</Paper>
+			<Typography
+				className={classes.text}
+				variant='h2'
+			>{`${query}`}</Typography>
+			<Typography
+				className={classes.text}
+				color='secondary'
+				variant='subtitle1'
+			>{`${total} gifs`}</Typography>
 		</Grid>
 	)
 }
