@@ -12,9 +12,6 @@ import Grid from '@material-ui/core/Grid'
 
 function App() {
 	const [gifs, setGifs] = React.useState(null)
-	React.useEffect(() => {
-		console.log(gifs)
-	}, [gifs])
 	const [query, setQuery] = React.useState(null)
 	const [page, setPage] = React.useState(0)
 	React.useEffect(() => {

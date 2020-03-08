@@ -14,8 +14,7 @@ const useStyles = makeStyles(theme => ({
 		width: '10vw'
 	},
 	input: {
-		width: '90vw',
-		marginLeft: '0.5vw'
+		width: '90vw'
 	}
 }))
 
